@@ -5,7 +5,6 @@ import { Storage } from '@ionic/storage';
 class Photo {
   data: any;
 }
-
 @Injectable({
   providedIn: 'root'
 })
