@@ -1,6 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Storage } from '@ionic/storage';
+
+import { HttpClient } from '@angular/common/http';
+import { LOCAL_CONFIG } from '../config/config-api';
+import { ApiConfig } from '../models/api';
+import { Subject, Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 class Photo {
   data: any;
@@ -12,7 +18,22 @@ export class PhotoService {
 
   public photos: Photo[] = [];
 
-  constructor(private camera: Camera, private storage: Storage) { }
+  constructor(
+    private camera: Camera, 
+    private storage: Storage,
+    private http: HttpClient,
+    @Inject(LOCAL_CONFIG) public localConfig: ApiConfig,
+    private route: ActivatedRoute
+  ) { }
+
+
+
+  getPopularFilms(page?: number) {
+    return this.http.get(`${this.localConfig.movieUrl}/popular${this.localConfig.params}&page=${page}`);
+  }
+
+
+
 
   takePicture() {
     const options: CameraOptions = {
