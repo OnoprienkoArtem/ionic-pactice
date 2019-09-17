@@ -1,0 +1,33 @@
+<ion-content>
+
+    <ion-slides pager="true" [options]="slideOpts" class="slider">
+        <ion-slide class="slider-item">
+            <div class="img-wrapp">
+                <div class="film" *ngFor="let film of films">
+                    <img src="{{imgUrl + film.poster_path}}" alt="">
+                </div>
+            </div>
+
+
+            <ion-text color="dark" class="title">
+                <h2>Cinema app welcomes you</h2>
+            </ion-text>
+        </ion-slide>
+        <ion-slide>
+            <img src="{{imgUrl + firstFilm}}" alt="">
+            <ion-text color="dark" class="title">
+
+                <ion-label>
+                    10000
+                </ion-label>
+
+                <h2>movies here</h2>
+            </ion-text>
+        </ion-slide>
+        <ion-slide>
+            <img src="{{imgUrl + secondFilm}}" alt="">
+
+        </ion-slide>
+    </ion-slides>
+
+</ion-content>
